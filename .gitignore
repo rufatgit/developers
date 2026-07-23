@@ -1,0 +1,71 @@
+# ======================
+# Python
+# ======================
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Python build files
+*.egg-info/
+dist/
+build/
+
+
+# ======================
+# Database
+# ======================
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+
+# ======================
+# Environment variables
+# ======================
+
+.env
+.env.*
+
+
+# ======================
+# IDE / Editor
+# ======================
+
+.vscode/
+.idea/
+
+# ======================
+# OS generated files
+# ======================
+
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Draw.io backup files
+*.$*.bkp
+
+
+# ======================
+# Frontend (React later)
+# ======================
+
+node_modules/
+dist/
+build/
+npm-debug.log*
+
+#Microsoft Word temporary lock file.
+~$*.docx 
