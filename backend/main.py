@@ -1,16 +1,21 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from typing import List
-import uvicorn
+from database import Base, engine
 
-app = FastAPI()
+# Import all models
+from models.user import User
+from models.project import Project
+from models.application import Application
+from models.review import Review
+from models.task import Task
+from models.skill import Skill
+from models.notification import Notification
+
+# Create all tables
+Base.metadata.create_all(bind=engine)
+
+app = FastAPI(title="Developer Collaboration Platform")
 
 
 @app.get("/")
-def hello():
-    return {"message": "Hello, World!"}
-
-
-if __name__ == "__main__":
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+def root():
+    return {"message": "Developer Collaboration Platform API is running 🚀"}
