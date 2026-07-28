@@ -12,30 +12,12 @@ class Task(Base):
 
     description = Column(Text)
 
-    status = Column(
-        String(20),
-        default="Pending",
-        nullable=False
-    )
+    status = Column(String(20), default="Pending", nullable=False)
 
-    project_id = Column(
-        Integer,
-        ForeignKey("projects.id"),
-        nullable=False
-    )
+    project_id = Column(Integer, ForeignKey("projects.id"), nullable=False)
 
-    assigned_to = Column(
-        Integer,
-        ForeignKey("users.id"),
-        nullable=True
-    )
+    assigned_to = Column(Integer, ForeignKey("users.id"), nullable=True)
 
-    project = relationship(
-        "Project",
-        back_populates="tasks"
-    )
+    project = relationship("Project", back_populates="tasks")
 
-    assignee = relationship(
-        "User",
-        back_populates="tasks"
-    )
+    assignee = relationship("User", back_populates="tasks")

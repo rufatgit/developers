@@ -20,16 +20,12 @@ class User(Base):
 
     # User owns many projects
     projects = relationship(
-        "Project",
-        back_populates="owner",
-        cascade="all, delete-orphan"
+        "Project", back_populates="owner", cascade="all, delete-orphan"
     )
 
     # User can apply to many projects
     applications = relationship(
-        "Application",
-        back_populates="user",
-        cascade="all, delete-orphan"
+        "Application", back_populates="user", cascade="all, delete-orphan"
     )
 
     # Reviews written by this user
@@ -37,7 +33,7 @@ class User(Base):
         "Review",
         foreign_keys="Review.reviewer_id",
         back_populates="reviewer",
-        cascade="all, delete-orphan"
+        cascade="all, delete-orphan",
     )
 
     # Reviews received by this user
@@ -45,25 +41,16 @@ class User(Base):
         "Review",
         foreign_keys="Review.reviewee_id",
         back_populates="reviewee",
-        cascade="all, delete-orphan"
+        cascade="all, delete-orphan",
     )
 
     # Tasks assigned to this user
-    tasks = relationship(
-        "Task",
-        back_populates="assignee"
-    )
+    tasks = relationship("Task", back_populates="assignee")
 
     # Skills of this user
-    skills = relationship(
-        "Skill",
-        back_populates="user",
-        cascade="all, delete-orphan"
-    )
+    skills = relationship("Skill", back_populates="user", cascade="all, delete-orphan")
 
     # Notifications for this user
     notifications = relationship(
-        "Notification",
-        back_populates="user",
-        cascade="all, delete-orphan"
+        "Notification", back_populates="user", cascade="all, delete-orphan"
     )

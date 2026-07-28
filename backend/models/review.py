@@ -8,41 +8,22 @@ class Review(Base):
 
     id = Column(Integer, primary_key=True, index=True)
 
-    reviewer_id = Column(
-        Integer,
-        ForeignKey("users.id"),
-        nullable=False
-    )
+    reviewer_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
-    reviewee_id = Column(
-        Integer,
-        ForeignKey("users.id"),
-        nullable=False
-    )
+    reviewee_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
-    project_id = Column(
-        Integer,
-        ForeignKey("projects.id"),
-        nullable=False
-    )
+    project_id = Column(Integer, ForeignKey("projects.id"), nullable=False)
 
     rating = Column(Integer, nullable=False)
 
     comment = Column(Text)
 
     reviewer = relationship(
-        "User",
-        foreign_keys=[reviewer_id],
-        back_populates="reviews_given"
+        "User", foreign_keys=[reviewer_id], back_populates="reviews_given"
     )
 
     reviewee = relationship(
-        "User",
-        foreign_keys=[reviewee_id],
-        back_populates="reviews_received"
+        "User", foreign_keys=[reviewee_id], back_populates="reviews_received"
     )
 
-    project = relationship(
-        "Project",
-        back_populates="reviews"
-    )
+    project = relationship("Project", back_populates="reviews")

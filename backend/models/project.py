@@ -12,39 +12,24 @@ class Project(Base):
 
     description = Column(Text, nullable=False)
 
-    owner_id = Column(
-        Integer,
-        ForeignKey("users.id"),
-        nullable=False
-    )
+    owner_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
     # ========================
     # Relationships
     # ========================
 
     # Project owner
-    owner = relationship(
-        "User",
-        back_populates="projects"
-    )
+    owner = relationship("User", back_populates="projects")
 
     # Applications for this project
     applications = relationship(
-        "Application",
-        back_populates="project",
-        cascade="all, delete-orphan"
+        "Application", back_populates="project", cascade="all, delete-orphan"
     )
 
     # Reviews for this project
     reviews = relationship(
-        "Review",
-        back_populates="project",
-        cascade="all, delete-orphan"
+        "Review", back_populates="project", cascade="all, delete-orphan"
     )
 
     # Tasks under this project
-    tasks = relationship(
-        "Task",
-        back_populates="project",
-        cascade="all, delete-orphan"
-    )
+    tasks = relationship("Task", back_populates="project", cascade="all, delete-orphan")

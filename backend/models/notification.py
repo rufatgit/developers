@@ -10,19 +10,8 @@ class Notification(Base):
 
     message = Column(String(255), nullable=False)
 
-    is_read = Column(
-        Boolean,
-        default=False,
-        nullable=False
-    )
+    is_read = Column(Boolean, default=False, nullable=False)
 
-    user_id = Column(
-        Integer,
-        ForeignKey("users.id"),
-        nullable=False
-    )
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
-    user = relationship(
-        "User",
-        back_populates="notifications"
-    )
+    user = relationship("User", back_populates="notifications")

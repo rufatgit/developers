@@ -12,13 +12,6 @@ class Skill(Base):
 
     level = Column(String(50), nullable=False)
 
-    user_id = Column(
-        Integer,
-        ForeignKey("users.id"),
-        nullable=False
-    )
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
-    user = relationship(
-        "User",
-        back_populates="skills"
-    )
+    user = relationship("User", back_populates="skills")
