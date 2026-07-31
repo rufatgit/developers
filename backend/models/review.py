@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, Text, ForeignKey
+from sqlalchemy import Column, Integer, Text, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
-from database import Base
+from ..database import Base
+from sqlalchemy.sql import func
 
 
 class Review(Base):
@@ -17,6 +18,10 @@ class Review(Base):
     rating = Column(Integer, nullable=False)
 
     comment = Column(Text)
+
+    created_at = Column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
 
     reviewer = relationship(
         "User", foreign_keys=[reviewer_id], back_populates="reviews_given"

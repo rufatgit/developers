@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
-from database import Base
+from ..database import Base
+from sqlalchemy.sql import func
 
 
 class Application(Base):
@@ -13,6 +14,17 @@ class Application(Base):
     project_id = Column(Integer, ForeignKey("projects.id"), nullable=False)
 
     status = Column(String(20), default="Pending", nullable=False)
+
+    created_at = Column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+
+    updated_at = Column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        onupdate=func.now(),
+        nullable=False,
+    )
 
     # Relationships
     user = relationship("User", back_populates="applications")

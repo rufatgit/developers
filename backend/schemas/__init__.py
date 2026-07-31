@@ -1,6 +1,7 @@
 from .user import UserBase, UserCreate, UserOut, UserUpdate
 from .project import ProjectBase, ProjectCreate, ProjectOut, ProjectUpdate
-from .skill import SkillBase, SkillCreate, SkillOut, SkillUpdate
+from .skill import SkillBase, SkillCreate, SkillOut
+from .user_skill import UserSkillBase, UserSkillCreate, UserSkillOut, UserSkillUpdate
 from .application import (
     ApplicationBase,
     ApplicationCreate,

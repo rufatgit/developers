@@ -1,14 +1,15 @@
 from fastapi import FastAPI
-from database import Base, engine
+from .database import Base, engine
+import uvicorn
 
 # Import all models
-from models.user import User
-from models.project import Project
-from models.application import Application
-from models.review import Review
-from models.task import Task
-from models.skill import Skill
-from models.notification import Notification
+from .models.user import User
+from .models.project import Project
+from .models.application import Application
+from .models.review import Review
+from .models.task import Task
+from .models.skill import Skill
+from .models.notification import Notification
 from .routers import (
     auth,
     users,
@@ -38,3 +39,7 @@ app.include_router(notifications.router)
 @app.get("/")
 def root():
     return {"message": "Developer Collaboration Platform API is running 🚀"}
+
+
+if __name__ == "__main__":
+    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)

@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, Text, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
-from database import Base
+from ..database import Base
+from sqlalchemy.sql import func
 
 
 class Task(Base):
@@ -17,6 +18,17 @@ class Task(Base):
     project_id = Column(Integer, ForeignKey("projects.id"), nullable=False)
 
     assigned_to = Column(Integer, ForeignKey("users.id"), nullable=True)
+
+    created_at = Column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+
+    updated_at = Column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        onupdate=func.now(),
+        nullable=False,
+    )
 
     project = relationship("Project", back_populates="tasks")
 

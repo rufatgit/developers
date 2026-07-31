@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, Text, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
-from database import Base
+from ..database import Base
+from sqlalchemy.sql import func
 
 
 class Project(Base):
@@ -13,6 +14,17 @@ class Project(Base):
     description = Column(Text, nullable=False)
 
     owner_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+
+    created_at = Column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+
+    updated_at = Column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        onupdate=func.now(),
+        nullable=False,
+    )
 
     # ========================
     # Relationships
