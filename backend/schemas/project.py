@@ -20,5 +20,6 @@ class ProjectUpdate(BaseModel):
 class ProjectOut(ProjectBase):
     id: int
     owner_id: int
+    owner_full_name: str
 
     model_config = ConfigDict(from_attributes=True)

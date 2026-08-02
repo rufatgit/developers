@@ -9,6 +9,11 @@ export async function listReviewsForUser(userId) {
   return data;
 }
 
+export async function listReviewsGivenByUser(userId) {
+  const { data } = await apiClient.get(`/reviews/given/${userId}`);
+  return data;
+}
+
 export async function listReviewsForProject(projectId) {
   const { data } = await apiClient.get(`/reviews/project/${projectId}`);
   return data;
@@ -36,6 +41,14 @@ export function useUserReviews(userId) {
   return useQuery({
     queryKey: ["reviews", "user", userId],
     queryFn: () => listReviewsForUser(userId),
+    enabled: !!userId,
+  });
+}
+
+export function useReviewsGivenByUser(userId) {
+  return useQuery({
+    queryKey: ["reviews", "given", userId],
+    queryFn: () => listReviewsGivenByUser(userId),
     enabled: !!userId,
   });
 }

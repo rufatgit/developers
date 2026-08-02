@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from .database import Base, engine
 import uvicorn
 
@@ -9,6 +10,7 @@ from .models.application import Application
 from .models.review import Review
 from .models.task import Task
 from .models.skill import Skill
+from .models.user_skill import UserSkill
 from .models.notification import Notification
 from .routers import (
     auth,
@@ -25,6 +27,14 @@ from .routers import (
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Developer Collaboration Platform")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(auth.router)
 app.include_router(users.router)

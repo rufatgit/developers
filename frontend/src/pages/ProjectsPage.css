@@ -1,0 +1,76 @@
+.projects-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.projects-page__header p {
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+.projects-page__new-btn {
+  background: var(--color-navy);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius);
+  white-space: nowrap;
+}
+
+.projects-page__new-btn:hover {
+  background: var(--color-navy-elevated);
+}
+
+.projects-page__status {
+  font-size: 0.9rem;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.projects-page__status--error {
+  color: var(--color-danger);
+}
+
+.projects-page__feed {
+  margin-top: 1rem;
+}
+
+.new-project-form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.new-project-form input,
+.new-project-form textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+.new-project-form button {
+  align-self: flex-start;
+  background: var(--color-amber);
+  color: var(--color-navy);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius);
+}
+
+.new-project-form button:hover:not(:disabled) {
+  background: #ffc61a;
+}
+
+.new-project-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

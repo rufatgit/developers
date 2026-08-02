@@ -39,6 +39,11 @@ def list_reviews_for_user(user_id: int, db: Session = Depends(get_db)):
     return db.query(Review).filter(Review.reviewee_id == user_id).all()
 
 
+@router.get("/given/{user_id}", response_model=List[ReviewOut])
+def list_reviews_given_by_user(user_id: int, db: Session = Depends(get_db)):
+    return db.query(Review).filter(Review.reviewer_id == user_id).all()
+
+
 @router.get("/project/{project_id}", response_model=List[ReviewOut])
 def list_reviews_for_project(project_id: int, db: Session = Depends(get_db)):
     return db.query(Review).filter(Review.project_id == project_id).all()

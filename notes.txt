@@ -1,0 +1,8 @@
+users:
+
+rufat.valiyev@example.com
+rufatvaliyev
+
+yunus.israr@example.com 
+rufatvaliyev
+

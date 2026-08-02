@@ -1,0 +1,76 @@
+.workspace-page__status {
+  text-align: center;
+  padding: 3rem 0;
+  font-size: 0.9rem;
+}
+
+.workspace-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.workspace-page__owner {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+}
+
+.workspace-page__apply-btn {
+  background: var(--color-amber);
+  color: var(--color-navy);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius);
+  white-space: nowrap;
+}
+
+.workspace-page__apply-btn:hover:not(:disabled) {
+  background: #ffc61a;
+}
+
+.workspace-page__apply-btn:disabled {
+  background: var(--color-border);
+  color: var(--color-ink-muted);
+  cursor: not-allowed;
+}
+
+.workspace-page__description {
+  margin-top: 0.9rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  max-width: 65ch;
+}
+
+.workspace-page__tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 1.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.workspace-page__tabs a {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-ink-muted);
+  padding: 0.6rem 0.9rem;
+  border-bottom: 2px solid transparent;
+  transform: translateY(1px);
+}
+
+.workspace-page__tabs a:hover {
+  color: var(--color-ink);
+}
+
+.workspace-page__tabs a.active {
+  color: var(--color-ink);
+  border-bottom-color: var(--color-amber);
+  font-weight: 600;
+}
+
+.workspace-page__tab-content {
+  padding-top: 1.5rem;
+}

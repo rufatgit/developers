@@ -45,3 +45,9 @@ class Project(Base):
 
     # Tasks under this project
     tasks = relationship("Task", back_populates="project", cascade="all, delete-orphan")
+
+    # Convenience property — reads the name through the relationship,
+    # doesn't store it as a separate column
+    @property
+    def owner_full_name(self) -> str:
+        return self.owner.full_name
