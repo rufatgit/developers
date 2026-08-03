@@ -30,3 +30,8 @@ class Application(Base):
     user = relationship("User", back_populates="applications")
 
     project = relationship("Project", back_populates="applications")
+
+    # Convenience property — reads the name through the relationship
+    @property
+    def applicant_full_name(self) -> str:
+        return self.user.full_name

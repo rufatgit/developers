@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import apiClient from "./client";
+import { useAuthStore } from "../store/authStore";
 
 // ==========================================================
 // Raw API calls
@@ -73,32 +74,42 @@ export function useUserSkills(userId) {
   });
 }
 
-export function useAddMySkill() {
+// Invalidate both 'mySkills' and 'userSkills' for the current user, since
+// the profile page reads via useUserSkills(userId), not useMySkills().
+function useInvalidateSkillQueries() {
   const queryClient = useQueryClient();
+  const currentUser = useAuthStore((s) => s.user);
+
+  return () => {
+    queryClient.invalidateQueries({ queryKey: ["mySkills"] });
+    if (currentUser?.id) {
+      queryClient.invalidateQueries({
+        queryKey: ["userSkills", currentUser.id],
+      });
+    }
+  };
+}
+
+export function useAddMySkill() {
+  const invalidate = useInvalidateSkillQueries();
   return useMutation({
     mutationFn: addMySkill,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["mySkills"] });
-    },
+    onSuccess: invalidate,
   });
 }
 
 export function useUpdateMySkill() {
-  const queryClient = useQueryClient();
+  const invalidate = useInvalidateSkillQueries();
   return useMutation({
     mutationFn: ({ skillId, level }) => updateMySkill(skillId, level),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["mySkills"] });
-    },
+    onSuccess: invalidate,
   });
 }
 
 export function useRemoveMySkill() {
-  const queryClient = useQueryClient();
+  const invalidate = useInvalidateSkillQueries();
   return useMutation({
     mutationFn: removeMySkill,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["mySkills"] });
-    },
+    onSuccess: invalidate,
   });
 }

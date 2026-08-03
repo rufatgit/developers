@@ -32,7 +32,9 @@ export default function ProjectWorkspacePage() {
       <div className="workspace-page__header">
         <div>
           <h1>{project.title}</h1>
-          <p className="workspace-page__owner">Owner #{project.owner_id}</p>
+          <p className="workspace-page__owner">
+            Initiator: {project.owner_full_name}
+          </p>
         </div>
 
         {!isOwner && (

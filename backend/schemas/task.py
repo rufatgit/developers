@@ -24,5 +24,6 @@ class TaskOut(TaskBase):
     status: str
     project_id: int
     assigned_to: Optional[int] = None
+    assignee_full_name: Optional[str] = None
 
     model_config = ConfigDict(from_attributes=True)

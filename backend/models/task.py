@@ -33,3 +33,8 @@ class Task(Base):
     project = relationship("Project", back_populates="tasks")
 
     assignee = relationship("User", back_populates="tasks")
+
+    # Convenience property — None if unassigned
+    @property
+    def assignee_full_name(self) -> str | None:
+        return self.assignee.full_name if self.assignee else None

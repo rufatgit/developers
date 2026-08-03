@@ -18,11 +18,11 @@ export default function TasksTab() {
   const { data: applications = [] } = useProjectApplications(project.id);
 
   // People eligible to be assigned: accepted applicants + the owner
-  const teamMemberIds = [
-    project.owner_id,
+  const teamMembers = [
+    { id: project.owner_id, name: project.owner_full_name },
     ...applications
       .filter((a) => a.status === "Accepted")
-      .map((a) => a.user_id),
+      .map((a) => ({ id: a.user_id, name: a.applicant_full_name })),
   ];
 
   if (isLoading) return <p className="tasks-tab__status">Loading tasks…</p>;
@@ -30,7 +30,7 @@ export default function TasksTab() {
   return (
     <div className="tasks-tab">
       {isOwner && (
-        <NewTaskForm projectId={project.id} teamMemberIds={teamMemberIds} />
+        <NewTaskForm projectId={project.id} teamMembers={teamMembers} />
       )}
 
       <div className="tasks-tab__board">
@@ -41,7 +41,7 @@ export default function TasksTab() {
             tasks={tasks.filter((t) => t.status === status)}
             projectId={project.id}
             isOwner={isOwner}
-            teamMemberIds={teamMemberIds}
+            teamMembers={teamMembers}
           />
         ))}
       </div>
@@ -49,7 +49,7 @@ export default function TasksTab() {
   );
 }
 
-function TaskColumn({ status, tasks, projectId, isOwner, teamMemberIds }) {
+function TaskColumn({ status, tasks, projectId, isOwner, teamMembers }) {
   return (
     <div className="task-column">
       <h3 className="task-column__title">
@@ -62,7 +62,7 @@ function TaskColumn({ status, tasks, projectId, isOwner, teamMemberIds }) {
             task={task}
             projectId={projectId}
             isOwner={isOwner}
-            teamMemberIds={teamMemberIds}
+            teamMembers={teamMembers}
           />
         ))}
         {tasks.length === 0 && <p className="task-column__empty">No tasks</p>}
@@ -71,7 +71,7 @@ function TaskColumn({ status, tasks, projectId, isOwner, teamMemberIds }) {
   );
 }
 
-function TaskCard({ task, projectId, isOwner, teamMemberIds }) {
+function TaskCard({ task, projectId, isOwner, teamMembers }) {
   const currentUser = useAuthStore((s) => s.user);
   const updateTask = useUpdateTask(projectId);
   const deleteTask = useDeleteTask(projectId);
@@ -119,9 +119,9 @@ function TaskCard({ task, projectId, isOwner, teamMemberIds }) {
             onChange={handleAssigneeChange}
           >
             <option value="">Unassigned</option>
-            {teamMemberIds.map((id) => (
-              <option key={id} value={id}>
-                User #{id}
+            {teamMembers.map((member) => (
+              <option key={member.id} value={member.id}>
+                {member.name}
               </option>
             ))}
           </select>
@@ -136,14 +136,14 @@ function TaskCard({ task, projectId, isOwner, teamMemberIds }) {
 
       {!isOwner && task.assigned_to && (
         <p className="task-card__assignee">
-          Assigned to User #{task.assigned_to}
+          Assigned to {task.assignee_full_name}
         </p>
       )}
     </div>
   );
 }
 
-function NewTaskForm({ projectId, teamMemberIds }) {
+function NewTaskForm({ projectId, teamMembers }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [assignedTo, setAssignedTo] = useState("");
@@ -187,9 +187,9 @@ function NewTaskForm({ projectId, teamMemberIds }) {
         onChange={(e) => setAssignedTo(e.target.value)}
       >
         <option value="">Unassigned</option>
-        {teamMemberIds.map((id) => (
-          <option key={id} value={id}>
-            User #{id}
+        {teamMembers.map((member) => (
+          <option key={member.id} value={member.id}>
+            {member.name}
           </option>
         ))}
       </select>

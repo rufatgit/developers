@@ -20,5 +20,6 @@ class ApplicationOut(BaseModel):
     user_id: int
     project_id: int
     status: str
+    applicant_full_name: str
 
     model_config = ConfigDict(from_attributes=True)

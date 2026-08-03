@@ -32,7 +32,7 @@ export default function ApplicationsTab() {
       {applications.map((app) => (
         <li key={app.id} className="application-card">
           <div>
-            <p className="application-card__user">Applicant #{app.user_id}</p>
+            <p className="application-card__user">{app.applicant_full_name}</p>
             <span
               className={`application-card__status application-card__status--${app.status.toLowerCase()}`}
             >
