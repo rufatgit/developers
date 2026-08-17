@@ -3,13 +3,13 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from ..security import get_current_user
-from ..database import get_db
-from ..models.skill import Skill
-from ..models.user import User
-from ..models.user_skill import UserSkill
-from ..schemas.skill import SkillCreate, SkillOut
-from ..schemas.user_skill import UserSkillCreate, UserSkillOut, UserSkillUpdate
+from security import get_current_user
+from database import get_db
+from models.skill import Skill
+from models.user import User
+from models.user_skill import UserSkill
+from schemas.skill import SkillCreate, SkillOut
+from schemas.user_skill import UserSkillCreate, UserSkillOut, UserSkillUpdate
 
 router = APIRouter(prefix="/skills", tags=["Skills"])
 

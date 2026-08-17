@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 
-from .skill import SkillOut
+from schemas.skill import SkillOut
 
 
 class UserSkillBase(BaseModel):

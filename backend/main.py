@@ -1,18 +1,18 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .database import Base, engine
+from database import Base, engine
 import uvicorn
 
 # Import all models
-from .models.user import User
-from .models.project import Project
-from .models.application import Application
-from .models.review import Review
-from .models.task import Task
-from .models.skill import Skill
-from .models.user_skill import UserSkill
-from .models.notification import Notification
-from .routers import (
+from models.user import User
+from models.project import Project
+from models.application import Application
+from models.review import Review
+from models.task import Task
+from models.skill import Skill
+from models.user_skill import UserSkill
+from models.notification import Notification
+from routers import (
     auth,
     users,
     projects,
@@ -52,4 +52,4 @@ def root():
 
 
 if __name__ == "__main__":
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

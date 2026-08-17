@@ -3,11 +3,11 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from ..security import get_current_user
-from ..database import get_db
-from ..models.project import Project
-from ..models.user import User
-from ..schemas.project import ProjectCreate, ProjectOut, ProjectUpdate
+from security import get_current_user
+from database import get_db
+from models.project import Project
+from models.user import User
+from schemas.project import ProjectCreate, ProjectOut, ProjectUpdate
 
 router = APIRouter(prefix="/projects", tags=["Projects"])
 

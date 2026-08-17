@@ -3,11 +3,11 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from ..security import get_current_user
-from ..database import get_db
-from ..models.review import Review
-from ..models.user import User
-from ..schemas.review import ReviewCreate, ReviewOut, ReviewUpdate
+from security import get_current_user
+from database import get_db
+from models.review import Review
+from models.user import User
+from schemas.review import ReviewCreate, ReviewOut, ReviewUpdate
 
 router = APIRouter(prefix="/reviews", tags=["Reviews"])
 
