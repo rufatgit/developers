@@ -6,3 +6,17 @@ rufatvaliyev
 yunus.israr@example.com 
 rufatvaliyev
 
+
+docker commands to run containers seperately:
+build image:
+docker build -t <your-app-name> .
+
+Run Container with Environment File & Port Mapping:
+docker run -p 8000:8000 --env-file .env <your-app-name>
+
+frontend:
+image:
+docker build -t <your-frontend-app-image-name> .
+container:
+docker run -d --name <frontend-app-container-name> -p 5173:5173 <your-frontend-app-image-name>
+

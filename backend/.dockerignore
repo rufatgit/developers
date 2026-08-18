@@ -1,0 +1,21 @@
+# Virtual Environments & Packages
+venv/
+.venv/
+env/
+
+# Python Cache & Compiled Files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Git & IDE Configurations
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Environment Variables & Logs
+.env
+*.log

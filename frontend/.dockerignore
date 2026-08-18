@@ -1,0 +1,23 @@
+# Dependencies & Build Outputs
+node_modules/
+dist/
+build/
+.vite/
+
+# Environment Variables & Local Configs
+.env
+.env.local
+.env.*.local
+
+# Version Control & IDEs
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Logs & System Junk
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
